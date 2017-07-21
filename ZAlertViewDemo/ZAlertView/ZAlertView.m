@@ -13,10 +13,10 @@
 #define Height 64
 #define Screen_Width [UIScreen mainScreen].bounds.size.width
 #define Left_Offset 45
-#define Font_Size 14.0f
+#define Font_Size 16.0f
 #define Image_Center_X 25
 #define Image_Center_Y 40
-#define Image_Width 20
+#define Image_Width 30
 @implementation ZAlertView
 
 #pragma mark 左侧的icon
@@ -41,7 +41,7 @@
         _tipsLabel.numberOfLines = 0;
         _tipsLabel.frame = CGRectMake(Left_Offset, 20, Screen_Width - Left_Offset, 40);
         _tipsLabel.textAlignment = NSTextAlignmentLeft;
-        _tipsLabel.font = [UIFont systemFontOfSize:Font_Size];
+        _tipsLabel.font = [UIFont boldSystemFontOfSize:Font_Size];
         [self addSubview:_tipsLabel];
     }
     return _tipsLabel;
@@ -76,7 +76,7 @@
             self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
             self.imageView.image = [UIImage imageNamed:@"success"];
             self.tipsLabel.text = title;
-            self.tipsLabel.textColor = [UIColor darkTextColor];
+            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#1296db"];
         }
             break;
         case AlertViewTypeError:
@@ -85,16 +85,16 @@
             self.backgroundColor = [UIColor colorWithHexString:@"#EE7942"];
             self.imageView.image = [UIImage imageNamed:@"error"];
             self.tipsLabel.text = title;
-            self.tipsLabel.textColor = [UIColor groupTableViewBackgroundColor];
+            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#ffffff"];
         }
             break;
         case AlertViewTypeMessage:
         {
             self.frame = CGRectMake(0, Start_Height, Screen_Width, Height);
             self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
-            self.imageView.image = [UIImage imageNamed:@"message"];
+            self.imageView.image = [UIImage imageNamed:@"Alert"];
             self.tipsLabel.text = title;
-            self.tipsLabel.textColor = [UIColor darkTextColor];
+            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#d4237a"];
         }
             break;
         case AlertViewTypeNetStatus:
@@ -103,7 +103,7 @@
             self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
             self.imageView.image = [UIImage imageNamed:@"net"];
             self.tipsLabel.text = title;
-            self.tipsLabel.textColor = [UIColor darkTextColor];
+            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#d4237a"];
         }
             break;
         default:
@@ -115,9 +115,9 @@
 #pragma mark 显示
 - (void)show
 {
-    [UIView animateWithDuration:1.0f
+    [UIView animateWithDuration:0.618f
                           delay:0
-         usingSpringWithDamping:0.7f
+         usingSpringWithDamping:0.9f
           initialSpringVelocity:10.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -132,7 +132,7 @@
 #pragma mark 移除
 - (void)dismiss
 {
-    [UIView animateWithDuration:0.5f
+    [UIView animateWithDuration:0.618f
                           delay:0
          usingSpringWithDamping:0.99f
           initialSpringVelocity:6.0f
