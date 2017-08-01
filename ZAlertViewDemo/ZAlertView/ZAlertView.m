@@ -135,7 +135,7 @@
     [UIView animateWithDuration:0.618f
                           delay:0
          usingSpringWithDamping:0.99f
-          initialSpringVelocity:6.0f
+          initialSpringVelocity:15.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.center = CGPointMake(self.center.x, -32);

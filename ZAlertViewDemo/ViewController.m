@@ -11,6 +11,7 @@
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *styleList;
 @property (copy, nonatomic) NSArray *dataSource;
+@property (copy, nonatomic) NSArray *dataSource2;
 @end
 
 @implementation ViewController
@@ -18,63 +19,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = [NSArray arrayWithObjects:@"成功",@"失败",@"预警信息",@"网络状况", nil];
+    self.dataSource2 = [NSArray arrayWithObjects:@"延迟消失",@"立即消失", nil];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 - (NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return section == 0?self.dataSource.count:self.dataSource2.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    cell.textLabel.text = indexPath.section == 0?self.dataSource[indexPath.row]:self.dataSource2[indexPath.row];
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"点击提示窗，使之消失。";
+    return section == 0? @"点击提示窗，使之消失。" : @"点击下面表格使提示窗消失";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row)
+    if (indexPath.section == 0)
     {
-        case 0:
+        NSArray *tips = [NSArray arrayWithObjects:@"请求成功!",@"请求失败!",@"xxoo楼发生入侵事件!",@"网络状态已发生改变!", nil];
+        [[ZAlertViewManager shareManager] showWithType:indexPath.row title:tips[indexPath.row]];
+        [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
+            NSLog(@"%@",tips[indexPath.row]);
+        }];
+    }
+    else
+    {
+        if (indexPath.row == 0)
         {
-            [[ZAlertViewManager shareManager] showWithType:AlertViewTypeSuccess title:@"请求成功!"];
-            [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                NSLog(@"请求成功!");
-            }];
+            [[ZAlertViewManager shareManager] dismissAlertWithTime:10];
         }
-            break;
-        case 1:
+        else
         {
-            [[ZAlertViewManager shareManager] showWithType:AlertViewTypeError title:@"请求失败!"];
-            [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                NSLog(@"请求失败!");
-            }];
+            [[ZAlertViewManager shareManager] dismissAlertImmediately];
         }
-            break;
-        case 2:
-        {
-            [[ZAlertViewManager shareManager] showWithType:AlertViewTypeMessage title:@"19楼发生入侵事件!"];
-            [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                NSLog(@"19楼发生入侵事件!");
-            }];
-        }
-            break;
-        case 3:
-        {
-            [[ZAlertViewManager shareManager] showWithType:AlertViewTypeNetStatus title:@"网络状态已发生改变!"];
-            [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
-                NSLog(@"网络状态已发生改变!");
-            }];
-        }
-            break;
-        default:
-            break;
     }
 }
 - (void)didReceiveMemoryWarning {

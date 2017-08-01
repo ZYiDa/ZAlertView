@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zZO-1U-Fhy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zZO-1U-Fhy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ltK-hJ-iyA">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="NoO-9D-bEf"/>
@@ -32,10 +32,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ltK-hJ-iyA" secondAttribute="bottom" id="0mG-Cg-9q8"/>
-                            <constraint firstAttribute="trailing" secondItem="ltK-hJ-iyA" secondAttribute="trailing" id="2vZ-rI-VB9"/>
-                            <constraint firstItem="ltK-hJ-iyA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Jto-iM-F03"/>
-                            <constraint firstItem="ltK-hJ-iyA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pfy-1G-FNK"/>
+                            <constraint firstAttribute="trailing" secondItem="ltK-hJ-iyA" secondAttribute="trailing" id="4OR-Ct-0us"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ltK-hJ-iyA" secondAttribute="bottom" id="EQq-em-LiH"/>
+                            <constraint firstItem="ltK-hJ-iyA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ca3-Tr-cAO"/>
+                            <constraint firstItem="ltK-hJ-iyA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kCv-Om-bT7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ZalertView" id="uGn-OV-as2"/>
@@ -51,7 +51,7 @@
         <scene sceneID="4nu-2c-13o">
             <objects>
                 <navigationController id="zZO-1U-Fhy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nH9-9c-nla">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nH9-9c-nla">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
