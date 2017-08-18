@@ -13,15 +13,11 @@
 		0626405A1F1F2A8B005492E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062640581F1F2A8B005492E8 /* Main.storyboard */; };
 		0626405C1F1F2A8B005492E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0626405B1F1F2A8B005492E8 /* Assets.xcassets */; };
 		0626405F1F1F2A8B005492E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0626405D1F1F2A8B005492E8 /* LaunchScreen.storyboard */; };
-		062640711F1F2AAE005492E8 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 062640671F1F2AAE005492E8 /* error.png */; };
-		062640721F1F2AAE005492E8 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 062640681F1F2AAE005492E8 /* message.png */; };
-		062640731F1F2AAE005492E8 /* net.png in Resources */ = {isa = PBXBuildFile; fileRef = 062640691F1F2AAE005492E8 /* net.png */; };
-		062640741F1F2AAE005492E8 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 0626406A1F1F2AAE005492E8 /* success.png */; };
 		062640751F1F2AAE005492E8 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */; };
 		062640761F1F2AAE005492E8 /* ZAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626406E1F1F2AAE005492E8 /* ZAlertView.m */; };
 		062640771F1F2AAE005492E8 /* ZAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 062640701F1F2AAE005492E8 /* ZAlertViewManager.m */; };
-		0626AC051F218FA80054AC28 /* Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0626AC041F218FA80054AC28 /* Alert.png */; };
 		0626AC081F21967F0054AC28 /* MsgPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626AC071F21967F0054AC28 /* MsgPlaySound.m */; };
+		06417F221F468EED008BC054 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06417F211F468EED008BC054 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,19 +31,15 @@
 		0626405B1F1F2A8B005492E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0626405E1F1F2A8B005492E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		062640601F1F2A8B005492E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		062640671F1F2AAE005492E8 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
-		062640681F1F2AAE005492E8 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
-		062640691F1F2AAE005492E8 /* net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = net.png; sourceTree = "<group>"; };
-		0626406A1F1F2AAE005492E8 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		0626406B1F1F2AAE005492E8 /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
 		0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		0626406D1F1F2AAE005492E8 /* ZAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAlertView.h; sourceTree = "<group>"; };
 		0626406E1F1F2AAE005492E8 /* ZAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertView.m; sourceTree = "<group>"; };
 		0626406F1F1F2AAE005492E8 /* ZAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAlertViewManager.h; sourceTree = "<group>"; };
 		062640701F1F2AAE005492E8 /* ZAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertViewManager.m; sourceTree = "<group>"; };
-		0626AC041F218FA80054AC28 /* Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alert.png; sourceTree = "<group>"; };
 		0626AC061F21967F0054AC28 /* MsgPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPlaySound.h; sourceTree = "<group>"; };
 		0626AC071F21967F0054AC28 /* MsgPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgPlaySound.m; sourceTree = "<group>"; };
+		06417F211F468EED008BC054 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +97,6 @@
 		062640661F1F2AAE005492E8 /* ZAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				0626AC041F218FA80054AC28 /* Alert.png */,
-				062640671F1F2AAE005492E8 /* error.png */,
-				062640681F1F2AAE005492E8 /* message.png */,
-				062640691F1F2AAE005492E8 /* net.png */,
-				0626406A1F1F2AAE005492E8 /* success.png */,
 				0626406B1F1F2AAE005492E8 /* UIColor+Hexadecimal.h */,
 				0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */,
 				0626AC061F21967F0054AC28 /* MsgPlaySound.h */,
@@ -118,6 +105,7 @@
 				0626406E1F1F2AAE005492E8 /* ZAlertView.m */,
 				0626406F1F1F2AAE005492E8 /* ZAlertViewManager.h */,
 				062640701F1F2AAE005492E8 /* ZAlertViewManager.m */,
+				06417F211F468EED008BC054 /* Media.xcassets */,
 			);
 			path = ZAlertView;
 			sourceTree = "<group>";
@@ -182,13 +170,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0626405F1F1F2A8B005492E8 /* LaunchScreen.storyboard in Resources */,
-				062640741F1F2AAE005492E8 /* success.png in Resources */,
+				06417F221F468EED008BC054 /* Media.xcassets in Resources */,
 				0626405C1F1F2A8B005492E8 /* Assets.xcassets in Resources */,
-				062640711F1F2AAE005492E8 /* error.png in Resources */,
-				0626AC051F218FA80054AC28 /* Alert.png in Resources */,
-				062640731F1F2AAE005492E8 /* net.png in Resources */,
 				0626405A1F1F2A8B005492E8 /* Main.storyboard in Resources */,
-				062640721F1F2AAE005492E8 /* message.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

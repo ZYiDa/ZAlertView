@@ -19,6 +19,7 @@ typedef NS_OPTIONS (NSInteger ,AlertViewType){
 @property (nonatomic,assign) AlertViewType alertViewType;
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UILabel     *tipsLabel;
+
 - (instancetype)init;
 - (void)topAlertViewTypewWithType:(AlertViewType)type title:(NSString *)title;
 - (void)show;

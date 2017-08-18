@@ -18,7 +18,9 @@
 
 @implementation ZAlertViewManager
 
-#pragma mark 创建伪单例，确保弹窗的唯一性
+/**
+ *创建伪单例，确保弹窗的唯一性
+ */
 + (ZAlertViewManager *)shareManager
 {
     static ZAlertViewManager *shareManager = nil;
@@ -32,22 +34,29 @@
 }
 
 #pragma mark 显示弹窗
+/**
+ *每次弹窗出现前，先判断定时器对象是否已经销毁置空，如果没有，先销毁置空
+ */
 - (void)showWithType:(AlertViewType)type title:(NSString *)title
 {
-    dismisstime = 0;//将时间重置为0
-    [self releaseTimer];//销毁定时器
+    [self releaseTimer];//销毁置空定时器
     dispatch_async(dispatch_get_main_queue(), ^{
         [[UIApplication sharedApplication].keyWindow addSubview:self.alertView];
         [self.alertView topAlertViewTypewWithType:type title:title];
         [self.alertView show];
+
+        //加载提示音，可以在showVoice方法中修改声音类型
         [self showVoice];
+
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAlertView)];
         tap.cancelsTouchesInView = NO;
         [self.alertView addGestureRecognizer:tap];
     });
 }
 
-#pragma mark 提示音
+/**
+ *弹窗提示音
+ */
 - (void)showVoice
 {
     MsgPlaySound *msgPlaySound = nil;
@@ -59,14 +68,19 @@
     msgPlaySound = [[MsgPlaySound alloc]initSystemSoundWithName:@"Tock" SoundType:@"caf"];
     [msgPlaySound play];
 }
-#pragma mark 立即移除弹窗
+
+/**
+ *立即移除弹窗，同时销毁定时器
+ */
 - (void)dismissAlertImmediately
 {
     [self releaseTimer];
     [self.alertView dismiss];
 }
 
-#pragma mark 延迟移除弹窗
+/**
+ *延时移除弹窗，之后销毁定时器
+ */
 - (void)dismissAlertWithTime:(NSInteger)time
 {
     self.dismissTime = time;
@@ -77,32 +91,44 @@
                                                   repeats:YES];
 }
 
+/**
+ *定时器方法
+ */
 - (void)dismisAlertWithTimer:(NSTimer *)timer
 {
-    NSLog(@"=01==%ld===",dismisstime);
+    NSLog(@"Timer:%ld",dismisstime);
     if (dismisstime >= self.dismissTime)
     {
-        [self releaseTimer];
         [self.alertView dismiss];
-        NSLog(@"=02==%ld===",dismisstime);
+        [self releaseTimer];
     }
     dismisstime += 1;
 }
 
-#pragma mark 释放定时器对象
+/**
+ *销毁定时器对象
+ *同时将定时器时间归零
+ */
 - (void)releaseTimer
 {
+    dismisstime = 0;//将时间重置为0
     [self.dismisTimer invalidate];
+    self.dismisTimer = nil;
 }
 
-#pragma mark block
+/**
+ *弹窗上的tap手势，立即移除弹窗，同时销毁定时器
+ */
 - (void)tapAlertView
 {
     [self.alertView dismiss];
-    dismisstime = 0;//将时间重置为0
-    [self.dismisTimer invalidate];//销毁定时器
+    [self releaseTimer];
     self.didselectedAlertViewBlock();
 }
+
+/**
+ *block监听，传递信息
+ */
 - (void)didSelectedAlertViewWithBlock:(SelectedAlertView)didselectedAlertViewBlock
 {
     self.didselectedAlertViewBlock = didselectedAlertViewBlock;
