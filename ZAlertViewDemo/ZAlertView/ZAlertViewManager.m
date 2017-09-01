@@ -83,12 +83,20 @@
  */
 - (void)dismissAlertWithTime:(NSInteger)time
 {
-    self.dismissTime = time;
-    self.dismisTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                   target:self
-                                                 selector:@selector(dismisAlertWithTimer:)
-                                                 userInfo:nil
-                                                  repeats:YES];
+    self.dismissTimes = time;
+
+    if (self.dismisTimer == nil)
+    {
+        self.dismisTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                            target:self
+                                                          selector:@selector(dismisAlertWithTimer:)
+                                                          userInfo:nil
+                                                           repeats:YES];
+    }
+    else
+    {
+        return;
+    }
 }
 
 /**
@@ -97,7 +105,7 @@
 - (void)dismisAlertWithTimer:(NSTimer *)timer
 {
     NSLog(@"Timer:%ld",dismisstime);
-    if (dismisstime >= self.dismissTime)
+    if (dismisstime > self.dismissTimes)
     {
         [self.alertView dismiss];
         [self releaseTimer];

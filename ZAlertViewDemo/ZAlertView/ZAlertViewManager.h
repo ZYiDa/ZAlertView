@@ -14,7 +14,7 @@ typedef void(^SelectedAlertView)();
 @property (nonatomic,strong)ZAlertView *alertView;
 + (ZAlertViewManager *)shareManager;
 
-@property (nonatomic,assign) NSInteger dismissTime;
+@property (nonatomic,assign) NSInteger dismissTimes;
 - (void)showWithType:(AlertViewType)type title:(NSString *)title;
 - (void)dismissAlertWithTime:(NSInteger)time;
 - (void)dismissAlertImmediately;

@@ -56,7 +56,7 @@
 }
 
 /**
- *初始化，添加tap手势
+ *初始化
  */
 - (instancetype)init
 {
@@ -76,51 +76,33 @@
     self.frame = CGRectMake(0, Start_Height, Screen_Width, Height);
     self.tipsLabel.text = title;
 
-    switch (type)
-    {
-        case AlertViewTypeSuccess:
-        {
-            self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
-            self.imageView.image = [UIImage imageNamed:@"success"];
-            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#1296db"];
-        }
-            break;
-        case AlertViewTypeError:
-        {
-            self.backgroundColor = [UIColor colorWithHexString:@"#EE7942"];
-            self.imageView.image = [UIImage imageNamed:@"error"];
-            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#ffffff"];
-        }
-            break;
-        case AlertViewTypeMessage:
-        {
-            self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
-            self.imageView.image = [UIImage imageNamed:@"Alert"];
-            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#d4237a"];
-        }
-            break;
-        case AlertViewTypeNetStatus:
-        {
-            self.backgroundColor = [UIColor colorWithHexString:@"#B0C4DE"];
-            self.imageView.image = [UIImage imageNamed:@"net"];
-            self.tipsLabel.textColor = [UIColor colorWithHexString:@"#d4237a"];
-        }
-            break;
-        default:
-            break;
-    }
+    NSArray *backColors = @[[UIColor whiteColor],
+                            [UIColor colorWithHexString:@"#EE7942"],
+                            [UIColor colorWithHexString:@"#d4237a"],
+                            [UIColor colorWithWhite:0.02 alpha:0.9]];
+    NSArray *textColors = @[[UIColor colorWithHexString:@"#1296db"],
+                            [UIColor colorWithHexString:@"#ffffff"],
+                            [UIColor whiteColor],
+                            [UIColor colorWithHexString:@"#ffffff"]];
+    NSArray *images      = @[[UIImage imageNamed:@"success"],
+                             [UIImage imageNamed:@"error"],
+                             [UIImage imageNamed:@"Alert"],
+                             [UIImage imageNamed:@"net"]];
+    self.backgroundColor = backColors[type];
+    self.imageView.image = images[type];
+    self.tipsLabel.textColor = textColors[type];
 }
 
 /**
- *提示窗出现的动画
+ *提示窗出现的动画，Spring动画
  */
 - (void)show
 {
     [UIView animateWithDuration:0.918f
                           delay:0
          usingSpringWithDamping:1.0f
-          initialSpringVelocity:10.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
+          initialSpringVelocity:1.0f
+                        options:UIViewAnimationOptionLayoutSubviews
                      animations:^{
                          self.center = CGPointMake(self.center.x, 32);
                          [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
@@ -137,9 +119,9 @@
 {
     [UIView animateWithDuration:0.218f
                           delay:0
-         usingSpringWithDamping:0.99f
-          initialSpringVelocity:1.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:20.0f
+                        options:UIViewAnimationOptionLayoutSubviews
                      animations:^{
                          self.center = CGPointMake(self.center.x, -32);
                      }
