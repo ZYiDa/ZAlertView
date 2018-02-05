@@ -14,13 +14,13 @@
 		0626405C1F1F2A8B005492E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0626405B1F1F2A8B005492E8 /* Assets.xcassets */; };
 		0626405F1F1F2A8B005492E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0626405D1F1F2A8B005492E8 /* LaunchScreen.storyboard */; };
 		062640751F1F2AAE005492E8 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */; };
-		062640761F1F2AAE005492E8 /* ZAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626406E1F1F2AAE005492E8 /* ZAlertView.m */; };
 		062640771F1F2AAE005492E8 /* ZAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 062640701F1F2AAE005492E8 /* ZAlertViewManager.m */; };
 		0626AC081F21967F0054AC28 /* MsgPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = 0626AC071F21967F0054AC28 /* MsgPlaySound.m */; };
 		06417F221F468EED008BC054 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06417F211F468EED008BC054 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		061E90EA20280C8E00F9E24E /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		0626404C1F1F2A8B005492E8 /* ZAlertViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZAlertViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		062640501F1F2A8B005492E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		062640521F1F2A8B005492E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,8 +33,6 @@
 		062640601F1F2A8B005492E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0626406B1F1F2AAE005492E8 /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
 		0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
-		0626406D1F1F2AAE005492E8 /* ZAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAlertView.h; sourceTree = "<group>"; };
-		0626406E1F1F2AAE005492E8 /* ZAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertView.m; sourceTree = "<group>"; };
 		0626406F1F1F2AAE005492E8 /* ZAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAlertViewManager.h; sourceTree = "<group>"; };
 		062640701F1F2AAE005492E8 /* ZAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAlertViewManager.m; sourceTree = "<group>"; };
 		0626AC061F21967F0054AC28 /* MsgPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPlaySound.h; sourceTree = "<group>"; };
@@ -101,10 +99,9 @@
 				0626406C1F1F2AAE005492E8 /* UIColor+Hexadecimal.m */,
 				0626AC061F21967F0054AC28 /* MsgPlaySound.h */,
 				0626AC071F21967F0054AC28 /* MsgPlaySound.m */,
-				0626406D1F1F2AAE005492E8 /* ZAlertView.h */,
-				0626406E1F1F2AAE005492E8 /* ZAlertView.m */,
 				0626406F1F1F2AAE005492E8 /* ZAlertViewManager.h */,
 				062640701F1F2AAE005492E8 /* ZAlertViewManager.m */,
+				061E90EA20280C8E00F9E24E /* Constant.h */,
 				06417F211F468EED008BC054 /* Media.xcassets */,
 			);
 			path = ZAlertView;
@@ -185,7 +182,6 @@
 			files = (
 				062640571F1F2A8B005492E8 /* ViewController.m in Sources */,
 				062640751F1F2AAE005492E8 /* UIColor+Hexadecimal.m in Sources */,
-				062640761F1F2AAE005492E8 /* ZAlertView.m in Sources */,
 				062640541F1F2A8B005492E8 /* AppDelegate.m in Sources */,
 				062640771F1F2AAE005492E8 /* ZAlertViewManager.m in Sources */,
 				0626AC081F21967F0054AC28 /* MsgPlaySound.m in Sources */,
@@ -313,7 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XR7Z76KXL9;
 				INFOPLIST_FILE = ZAlertViewDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kzkj.ZAlertViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -326,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XR7Z76KXL9;
 				INFOPLIST_FILE = ZAlertViewDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kzkj.ZAlertViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
