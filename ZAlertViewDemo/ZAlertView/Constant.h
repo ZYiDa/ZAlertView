@@ -28,7 +28,11 @@
 #define ShowAnimationTime 1.0f
 #define DissmissAnimationTime 0.25f
 
+<<<<<<< HEAD
 
+=======
+#define WeakSelf __weak typeof(self) weakSelf = self;
+>>>>>>> 0e60018f9298860e4a6fe47cc6bf4b4a798d6dfa
 
 
 #endif /* Constant_h */
