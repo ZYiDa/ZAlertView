@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%f",[UIScreen mainScreen].bounds.size.height);
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.dataSource = [NSArray arrayWithObjects:@"成功",@"失败",@"预警信息",@"网络状况", nil];
     self.dataSource2 = [NSArray arrayWithObjects:@"延迟消失",@"立即消失", nil];
 }
@@ -47,7 +49,7 @@
 {
     if (indexPath.section == 0)
     {
-        NSArray *tips = [NSArray arrayWithObjects:@"请求成功!",@"请求失败!",@"xxoo楼发生入侵事件!",@"网络状态已发生改变!", nil];
+        NSArray *tips = [NSArray arrayWithObjects:@"请求成功!",@"请求失败!",@"888楼发生入侵事件!",@"网络状态已发生改变!", nil];
         [[ZAlertViewManager shareManager] showWithType:indexPath.row title:tips[indexPath.row]];
         [[ZAlertViewManager shareManager] didSelectedAlertViewWithBlock:^{
             NSLog(@"%@",tips[indexPath.row]);

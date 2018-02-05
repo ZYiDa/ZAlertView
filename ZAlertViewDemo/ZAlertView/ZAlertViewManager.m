@@ -8,11 +8,154 @@
 
 #import "ZAlertViewManager.h"
 #import "MsgPlaySound.h"
+#import "UIColor+Hexadecimal.h"
+#import "Constant.h"
+
+#pragma mark === ZAlertView ===
+@interface ZAlertView()
+{
+    BOOL isShow;
+    BOOL isDismiss;
+}
+@property (nonatomic,assign) AlertViewType alertViewType;
+@property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong) UILabel     *tipsLabel;
+
+- (instancetype)init;
+- (void)topAlertViewTypewWithType:(AlertViewType)type title:(NSString *)title;
+- (void)show;
+- (void)dismiss;
+
+@end
+
+@implementation ZAlertView
+
+/**
+ *左侧的类型icon
+ */
+- (UIImageView *)imageView
+{
+    if (_imageView == nil)
+    {
+        _imageView = [[UIImageView alloc]init];
+        _imageView.userInteractionEnabled = YES;
+        _imageView.frame = CGRectMake(0, 0, Image_Width, Image_Width);
+        _imageView.center = CGPointMake(Image_Center_X, Image_Center_Y);
+        [self addSubview:_imageView];
+    }
+    return _imageView;
+}
+
+/**
+ *右侧的提示信息label
+ */
+- (UILabel *)tipsLabel
+{
+    if (_tipsLabel == nil)
+    {
+        _tipsLabel = [[UILabel alloc]init];
+        _tipsLabel.numberOfLines = 0;
+        _tipsLabel.userInteractionEnabled = YES;
+        _tipsLabel.frame = CGRectMake(Left_Offset, Bounce_X_Label, Screen_Width - Left_Offset - Right_Offset, TipLabelHeight);
+        _tipsLabel.textAlignment = NSTextAlignmentLeft;
+        _tipsLabel.font = [UIFont boldSystemFontOfSize:Font_Size];
+        [self addSubview:_tipsLabel];
+    }
+    return _tipsLabel;
+}
+
+/**
+ *初始化
+ */
+- (instancetype)init
+{
+    self = [super init];
+    if (self){
+        isShow = NO;
+        isDismiss = NO;
+        self.userInteractionEnabled = YES;
+    }
+    return self;
+}
+
+
+/**
+ *根据type的不同，设置不同的UI参数
+ */
+- (void)topAlertViewTypewWithType:(AlertViewType)type title:(NSString *)title
+{
+    self.frame = CGRectMake(0, Start_Height, Screen_Width, Height);
+    self.tipsLabel.text = title;
+
+    NSArray *backColors = @[[UIColor whiteColor],
+                            [UIColor colorWithHexString:@"#EE7942"],
+                            [UIColor colorWithHexString:@"#d4237a"],
+                            [UIColor colorWithWhite:0.02 alpha:0.9]];
+    NSArray *textColors = @[[UIColor colorWithHexString:@"#1296db"],
+                            [UIColor colorWithHexString:@"#ffffff"],
+                            [UIColor whiteColor],
+                            [UIColor colorWithHexString:@"#ffffff"]];
+    NSArray *images      = @[[UIImage imageNamed:@"success"],
+                             [UIImage imageNamed:@"error"],
+                             [UIImage imageNamed:@"Alert"],
+                             [UIImage imageNamed:@"net"]];
+    self.backgroundColor = backColors[type];
+    self.imageView.image = images[type];
+    self.tipsLabel.textColor = textColors[type];
+}
+
+/**
+ *提示窗出现的动画，Spring动画
+ */
+- (void)show
+{
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:ShowAnimationTime
+                          delay:0
+         usingSpringWithDamping:0.8f
+          initialSpringVelocity:1.f
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         //TODO:*************
+                         weakSelf.center = CGPointMake(weakSelf.center.x, Self_Center_Y);
+                         [[UIApplication sharedApplication].keyWindow bringSubviewToFront:weakSelf];
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+
+}
+
+/**
+ *移除提示窗的动画
+ */
+- (void)dismiss
+{
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:DissmissAnimationTime
+                          delay:0
+         usingSpringWithDamping:1.0f
+          initialSpringVelocity:1.0f
+                        options:UIViewAnimationOptionTransitionCurlUp
+                     animations:^{
+                         weakSelf.center = CGPointMake(weakSelf.center.x, -Self_Center_Y);
+                     }
+                     completion:^(BOOL finished) {
+                         [weakSelf removeFromSuperview];
+                     }];
+
+}
+
+
+@end
+
+
+#pragma mark === ZAlertViewManager ===
 @interface ZAlertViewManager ()
 {
     NSInteger dismisstime;
 
 }
+@property (nonatomic,assign) NSInteger dismissTimes;
 @property (nonatomic,strong) NSTimer *dismisTimer;
 @end
 
@@ -39,18 +182,19 @@
  */
 - (void)showWithType:(AlertViewType)type title:(NSString *)title
 {
+    __weak typeof(self) weakSelf = self;
     [self releaseTimer];//销毁置空定时器
     dispatch_async(dispatch_get_main_queue(), ^{
         [[UIApplication sharedApplication].keyWindow addSubview:self.alertView];
-        [self.alertView topAlertViewTypewWithType:type title:title];
-        [self.alertView show];
+        [weakSelf.alertView topAlertViewTypewWithType:type title:title];
+        [weakSelf.alertView show];
 
         //加载提示音，可以在showVoice方法中修改声音类型
-        [self showVoice];
+        [weakSelf showVoice];
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAlertView)];
         tap.cancelsTouchesInView = NO;
-        [self.alertView addGestureRecognizer:tap];
+        [weakSelf.alertView addGestureRecognizer:tap];
     });
 }
 
@@ -61,8 +205,7 @@
 {
     MsgPlaySound *msgPlaySound = nil;
     //通知声音
-    if (msgPlaySound != nil)
-    {
+    if (msgPlaySound != nil){
         msgPlaySound = nil;
     }
     msgPlaySound = [[MsgPlaySound alloc]initSystemSoundWithName:@"Tock" SoundType:@"caf"];
@@ -85,18 +228,14 @@
 {
     self.dismissTimes = time;
 
-    if (self.dismisTimer == nil)
-    {
-        self.dismisTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                            target:self
-                                                          selector:@selector(dismisAlertWithTimer:)
-                                                          userInfo:nil
-                                                           repeats:YES];
-    }
-    else
-    {
+    if (self.dismisTimer != nil) {
         return;
     }
+    self.dismisTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                        target:self
+                                                      selector:@selector(dismisAlertWithTimer:)
+                                                      userInfo:nil
+                                                       repeats:YES];
 }
 
 /**
@@ -105,8 +244,7 @@
 - (void)dismisAlertWithTimer:(NSTimer *)timer
 {
     NSLog(@"Timer:%ld",dismisstime);
-    if (dismisstime > self.dismissTimes)
-    {
+    if (dismisstime > self.dismissTimes){
         [self.alertView dismiss];
         [self releaseTimer];
     }
@@ -131,7 +269,9 @@
 {
     [self.alertView dismiss];
     [self releaseTimer];
-    self.didselectedAlertViewBlock();
+    if (self.didselectedAlertViewBlock) {
+        self.didselectedAlertViewBlock();
+    }
 }
 
 /**
@@ -142,3 +282,4 @@
     self.didselectedAlertViewBlock = didselectedAlertViewBlock;
 }
 @end
+
